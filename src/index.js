@@ -27,42 +27,51 @@ const theme = {
   dark: 'dark-theme',
 };
 const {light, dark} = theme;
-
+  
+savedTheme()
 input.addEventListener('change', (e) => {
-    body.classList.replace(light, dark)
-    localStorage.setItem('class', dark);
-    localStorage.setItem('checked', true);
-    if (!input.checked) {
-        body.classList.replace(dark, light)
+        
+    if (input.checked === true) {
+        
+        body.classList.remove(light)
+        body.classList.add(dark)
 
-        localStorage.setItem('class', light);
-        localStorage.setItem('checked', false);
+        localStorage.setItem('class', dark);
+        localStorage.setItem('checked', true);
+
+        let lockalBool = localStorage.getItem('checked');
+
+        input.setAttribute('checked', lockalBool)
     
     }
-    if (input.checked) {
+    if (input.checked===false) {
+        body.classList.remove(dark);
+        body.classList.add(light);
+        
+        localStorage.setItem('class', light);
+        localStorage.setItem('checked', false);
+        let lockalBool = localStorage.getItem('checked');
 
-         body.classList.replace(light, dark)
-    localStorage.setItem('class', dark);
-    localStorage.setItem('checked', true);
+        input.setAttribute('checked',lockalBool)
        }
 
 });
 
 
-savedTheme()
 
 
 function savedTheme() {
-    body.classList.add(light)
-    input.checked = false;
- let className = localStorage.getItem('class');
+   let className = localStorage.getItem('class');
     let lockalBool = localStorage.getItem('checked');
-    if (className === light || dark) {
-        console.log('uyjgh');
-        input.checked = lockalBool;
-        body.classList.add(className);
-    }
+    const bodyCurrentClass = body.className
+    console.log(bodyCurrentClass);
+    if (lockalBool !== null) {
+       
+        input.setAttribute('checked', lockalBool)
+         body.classList.add(className)
 
+    }
+    
 }
 
 
